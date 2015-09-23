@@ -14,3 +14,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_actionInsert_row_triggered()
+{
+
+}
