@@ -6,6 +6,7 @@
 namespace Ui {
 class MainWindow;
 }
+class MyTableModel;
 
 class MainWindow : public QMainWindow
 {
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    MyTableModel *m_model;
 };
 
 #endif // MAINWINDOW_H
