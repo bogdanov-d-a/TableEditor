@@ -33,4 +33,5 @@ Qt::ItemFlags MyTableModel::flags(const QModelIndex &index) const
 void MyTableModel::insertRow()
 {
     m_data.push_back({ "label", 0 });
+    emit layoutChanged();
 }
