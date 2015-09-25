@@ -12,6 +12,9 @@ int MyTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant MyTableModel::data(const QModelIndex &index, int role) const
 {
+    if (role != Qt::DisplayRole)
+        return QVariant();
+
     Record const& dataElem = m_data[index.row()];
 
     if (index.column() == 0)
@@ -27,7 +30,7 @@ bool MyTableModel::setData(const QModelIndex &index, const QVariant &value, int 
 
 Qt::ItemFlags MyTableModel::flags(const QModelIndex &index) const
 {
-    return Qt::ItemFlags();
+    return QAbstractTableModel::flags(index);
 }
 
 void MyTableModel::insertRow()
