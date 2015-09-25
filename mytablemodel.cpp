@@ -12,7 +12,7 @@ int MyTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant MyTableModel::data(const QModelIndex &index, int role) const
 {
-    if (role != Qt::DisplayRole)
+    if (role != Qt::DisplayRole && role != Qt::EditRole)
         return QVariant();
 
     Record const& dataElem = m_data[index.row()];
