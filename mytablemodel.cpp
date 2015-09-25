@@ -25,12 +25,23 @@ QVariant MyTableModel::data(const QModelIndex &index, int role) const
 
 bool MyTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    return false;
+    if (role != Qt::EditRole)
+        return QAbstractTableModel::setData(index, value,role);
+
+    Record &dataElem = m_data[index.row()];
+
+    if (index.column() == 0)
+        dataElem.label = value.toString();
+    else
+        dataElem.number = value.toInt();
+
+    emit layoutChanged();
+    return true;
 }
 
 Qt::ItemFlags MyTableModel::flags(const QModelIndex &index) const
 {
-    return QAbstractTableModel::flags(index);
+    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
 
 void MyTableModel::insertRow()
