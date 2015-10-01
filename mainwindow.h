@@ -7,6 +7,7 @@ namespace Ui {
 class MainWindow;
 }
 class MyTableModel;
+class PlotWidget;
 
 class MainWindow : public QMainWindow
 {
@@ -22,6 +23,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     MyTableModel *m_model;
+    PlotWidget *m_plotWidget;
 };
 
 #endif // MAINWINDOW_H

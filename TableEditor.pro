@@ -14,11 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     mytablemodel.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    plotwidget.cpp
 
 HEADERS  += \
     mytablemodel.h \
-    mainwindow.h
+    mainwindow.h \
+    plotwidget.h
 
 FORMS += \
     mainwindow.ui
