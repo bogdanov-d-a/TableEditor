@@ -12,9 +12,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_model = new MyTableModel();
     ui->tableView->setModel(m_model);
 
-    m_plotWidget = new PlotWidget(this);
-    m_plotWidget->move(410, 30);
-    m_plotWidget->resize(390, 531);
+    m_plotWidget = new PlotWidget(m_model, this);
+    m_plotWidget->move(410, 100);
+    m_plotWidget->resize(390, 390);
+
+    connect(m_model, SIGNAL(layoutChanged()),
+            m_plotWidget, SLOT(repaint()));
 }
 
 MainWindow::~MainWindow()

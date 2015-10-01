@@ -49,3 +49,13 @@ void MyTableModel::insertRow()
     m_data.push_back({ "label", 0 });
     emit layoutChanged();
 }
+
+int MyTableModel::getSize() const
+{
+    return m_data.size();
+}
+
+int MyTableModel::getNumber(int index) const
+{
+    return m_data[index].number;
+}
