@@ -3,6 +3,7 @@
 #include "mytablemodel.h"
 #include "plotwidget.h"
 #include <algorithm>
+#include "aboutdialog.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -45,4 +46,11 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
     m_plotWidget->move(20 + elemWidth, (size().height() - plotDimension) / 2);
     m_plotWidget->resize(plotDimension, plotDimension);
+}
+
+void MainWindow::on_actionAbout_triggered()
+{
+    AboutDialog about;
+    about.setModal(true);
+    about.exec();
 }

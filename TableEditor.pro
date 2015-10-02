@@ -16,12 +16,15 @@ CONFIG += C++11
 SOURCES += main.cpp\
     mytablemodel.cpp \
     mainwindow.cpp \
-    plotwidget.cpp
+    plotwidget.cpp \
+    aboutdialog.cpp
 
 HEADERS  += \
     mytablemodel.h \
     mainwindow.h \
-    plotwidget.h
+    plotwidget.h \
+    aboutdialog.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    aboutdialog.ui

@@ -20,6 +20,8 @@ public:
 private slots:
     void on_actionInsert_row_triggered();
 
+    void on_actionAbout_triggered();
+
 private:
     Ui::MainWindow *ui;
     MyTableModel *m_model;
