@@ -24,6 +24,9 @@ private:
     Ui::MainWindow *ui;
     MyTableModel *m_model;
     PlotWidget *m_plotWidget;
+
+protected:
+    void resizeEvent(QResizeEvent *event);
 };
 
 #endif // MAINWINDOW_H
