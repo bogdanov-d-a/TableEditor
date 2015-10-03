@@ -59,3 +59,17 @@ int MyTableModel::getNumber(int index) const
 {
     return m_data[index].number;
 }
+
+void MyTableModel::loadData(const QString &path)
+{
+    m_data.clear();
+
+    if (path.size() == 0)
+        return;
+
+    m_data.push_back({ "loaded", 1 });
+    emit layoutChanged();
+}
+
+void MyTableModel::saveData(const QString &path) const
+{}

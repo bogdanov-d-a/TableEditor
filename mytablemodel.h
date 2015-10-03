@@ -16,6 +16,10 @@ public:
     int getSize() const;
     int getNumber(int index) const;
 
+public slots:
+    void loadData(QString const& path);
+    void saveData(QString const& path) const;
+
 private:
     typedef struct {
         QString label;

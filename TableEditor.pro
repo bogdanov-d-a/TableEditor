@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     mytablemodel.cpp \
     mainwindow.cpp \
     plotwidget.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    documentstate.cpp
 
 HEADERS  += \
     mytablemodel.h \
     mainwindow.h \
     plotwidget.h \
-    aboutdialog.h
+    aboutdialog.h \
+    documentstate.h
 
 FORMS += \
     mainwindow.ui \

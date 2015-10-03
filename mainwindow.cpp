@@ -4,6 +4,7 @@
 #include "plotwidget.h"
 #include <algorithm>
 #include "aboutdialog.h"
+#include "documentstate.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +21,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_model, SIGNAL(layoutChanged()),
             m_plotWidget, SLOT(repaint()));
+
+    m_docState = new DocumentState();
+
+    connect(m_model, SIGNAL(layoutChanged()),
+            m_docState, SLOT(modified()));
+
+    connect(m_docState, SIGNAL(loadData(QString)),
+            m_model, SLOT(loadData(QString)));
+
+    connect(m_docState, SIGNAL(saveData(QString)),
+            m_model, SLOT(saveData(QString)));
+
+    connect(m_docState, SIGNAL(canSaveChanged(bool)),
+            this, SLOT(setCanSave(bool)));
 }
 
 MainWindow::~MainWindow()
@@ -27,6 +42,12 @@ MainWindow::~MainWindow()
     delete ui;
     delete m_model;
     delete m_plotWidget;
+    delete m_docState;
+}
+
+void MainWindow::setCanSave(bool canSave)
+{
+    ui->actionSave->setEnabled(canSave);
 }
 
 void MainWindow::on_actionInsert_row_triggered()
@@ -53,4 +74,24 @@ void MainWindow::on_actionAbout_triggered()
     AboutDialog about;
     about.setModal(true);
     about.exec();
+}
+
+void MainWindow::on_actionNew_triggered()
+{
+    m_docState->newFile();
+}
+
+void MainWindow::on_actionOpen_triggered()
+{
+    m_docState->open();
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    m_docState->save();
+}
+
+void MainWindow::on_actionSave_as_triggered()
+{
+    m_docState->saveAs();
 }
