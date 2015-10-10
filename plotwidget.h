@@ -18,7 +18,7 @@ protected:
 
 private:
     MyTableModel *m_table;
-    double m_shift;
+    double m_shift, m_angle;
     QTimer *m_timer;
 
 private slots:

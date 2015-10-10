@@ -8,6 +8,7 @@ PlotWidget::PlotWidget(MyTableModel *table, QWidget *parent)
     :QWidget(parent)
     ,m_table(table)
     ,m_shift(0)
+    ,m_angle(0.5)
     ,m_timer(new QTimer())
 {
     connect(m_timer, SIGNAL(timeout()),
@@ -162,6 +163,21 @@ struct PieInfo
     }
 };
 
+double LinearFunc(double k, double x, double b)
+{
+    return k * x + b;
+}
+
+double HeightScaleFunc(double angle)
+{
+    return LinearFunc(0.8 - 0.2, angle, 0.2);
+}
+
+double ThicknessScaleFunc(double angle)
+{
+    return LinearFunc(0.02 - 0.1, angle, 0.1);
+}
+
 void PlotWidget::paintEvent(QPaintEvent *event)
 {
     QWidget::paintEvent(event);
@@ -171,8 +187,8 @@ void PlotWidget::paintEvent(QPaintEvent *event)
     painter.drawRect(0, 0, size().width(), size().height());
 
     const int HGAP = 10;
-    double heightScale = 0.6;
-    double thicknessScale = 0.05;
+    double heightScale = HeightScaleFunc(m_angle);
+    double thicknessScale = ThicknessScaleFunc(m_angle);
     double vgap = size().height() * (1 - heightScale) / 2;
     QRectF rect(HGAP, vgap, size().width() - 2 * HGAP, size().height() * heightScale);
     QPointF shift(0, size().height() * thicknessScale);
