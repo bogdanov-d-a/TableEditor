@@ -2,11 +2,24 @@
 #include <QPainter>
 #include "mytablemodel.h"
 #include <QtMath>
+#include <QTimer>
 
 PlotWidget::PlotWidget(MyTableModel *table, QWidget *parent)
     :QWidget(parent)
     ,m_table(table)
-{}
+    ,m_shift(0)
+    ,m_timer(new QTimer())
+{
+    connect(m_timer, SIGNAL(timeout()),
+            this, SLOT(onTimer()));
+    m_timer->start(1000.0 / 60);
+}
+
+PlotWidget::~PlotWidget()
+{
+    m_timer->stop();
+    delete m_timer;
+}
 
 const QVector<QColor> colors = {
     "orange",
@@ -177,7 +190,7 @@ void PlotWidget::paintEvent(QPaintEvent *event)
         for (int row = 0; row < m_table->getSize(); ++row)
         {
             double curSize = 2 * M_PI * m_table->getNumber(row) / sum;
-            pies.push_back(PieInfo(start, curSize, row));
+            pies.push_back(PieInfo(start + m_shift, curSize, row));
             start += curSize;
         }
     }
@@ -194,4 +207,10 @@ void PlotWidget::paintEvent(QPaintEvent *event)
 
         DrawPie(painter, rect, shift, pie.astart, pie.astart + pie.alen);
     }
+}
+
+void PlotWidget::onTimer()
+{
+    m_shift = ConstrainAngle(m_shift + 0.01);
+    repaint();
 }
