@@ -22,6 +22,11 @@ PlotWidget::~PlotWidget()
     delete m_timer;
 }
 
+void PlotWidget::setAngle(int angle)
+{
+    m_angle = 1.0 * angle / 100;
+}
+
 const QVector<QColor> colors = {
     "orange",
     "yellow",

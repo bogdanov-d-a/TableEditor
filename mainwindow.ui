@@ -24,6 +24,25 @@
      </rect>
     </property>
    </widget>
+   <widget class="QSlider" name="angleSlider">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>489</y>
+      <width>22</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="value">
+     <number>50</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

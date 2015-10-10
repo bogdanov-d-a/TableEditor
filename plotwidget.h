@@ -13,6 +13,9 @@ public:
     explicit PlotWidget(MyTableModel *table, QWidget *parent = 0);
     ~PlotWidget();
 
+public slots:
+    void setAngle(int angle);
+
 protected:
     void paintEvent(QPaintEvent *event);
 

@@ -20,6 +20,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(m_model, SIGNAL(layoutChanged()),
             m_plotWidget, SLOT(repaint()));
+
+    connect(ui->angleSlider, SIGNAL(valueChanged(int)),
+            m_plotWidget, SLOT(setAngle(int)));
 }
 
 MainWindow::~MainWindow()
