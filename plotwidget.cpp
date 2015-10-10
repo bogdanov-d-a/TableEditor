@@ -97,8 +97,14 @@ double SmallestAngleDifference(double a, double b)
     return fabs(r);
 }
 
-void DrawPie(QPainter &painter, QRectF const& rect, QPointF const& shift, double astart, double aend)
+void DrawPie(QPainter &painter, QRectF rect, QPointF const& shift, double astart, double aend)
 {
+    QPointF cshift(GetEllipsePoint(rect, (astart + aend) / 2) - rect.center());
+    cshift *= 0.2;
+
+    rect.setX(rect.x() + cshift.x());
+    rect.setY(rect.y() + cshift.y());
+
     {
         double first, second;
         if (SmallestAngleDifference(astart, 3 * M_PI / 2) <
@@ -191,7 +197,7 @@ void PlotWidget::paintEvent(QPaintEvent *event)
     painter.setRenderHints(painter.renderHints() | QPainter::Antialiasing);
     painter.drawRect(0, 0, size().width(), size().height());
 
-    const int HGAP = 10;
+    const int HGAP = 50;
     double heightScale = HeightScaleFunc(m_angle);
     double thicknessScale = ThicknessScaleFunc(m_angle);
     double vgap = size().height() * (1 - heightScale) / 2;
